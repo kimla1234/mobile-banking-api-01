@@ -15,7 +15,7 @@ public class UserRole {
     private Integer id;
 
     @ManyToOne
-    private User user;
+    private User  user;
 
     @ManyToOne
     private Role role;
