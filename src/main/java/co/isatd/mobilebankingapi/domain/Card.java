@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(unique = true, nullable = false)
     private String number;
@@ -25,16 +25,16 @@ public class Card {
 
     private String holder;
 
-    private LocalDate issueDate;
-
+    private LocalDate issuedAt;
     private LocalDate expiredAt;
 
     private Boolean isDeleted;
 
-    @ManyToOne // many cardType to one card
+    @ManyToOne
     @JoinColumn(name = "type_id")
     private Card_Type cardType;
 
     @OneToOne(mappedBy = "card")
     private Account account;
+
 }
