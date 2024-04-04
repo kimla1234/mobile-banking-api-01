@@ -3,8 +3,11 @@ package co.isatd.mobilebankingapi.maper;
 import co.isatd.mobilebankingapi.domain.User;
 import co.isatd.mobilebankingapi.features.user.dto.UserCreateRequest;
 import co.isatd.mobilebankingapi.features.user.dto.UserDetailResponse;
-import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
+import co.isatd.mobilebankingapi.features.user.dto.UserResponse;
+import co.isatd.mobilebankingapi.features.user.dto.UserUpdateRequest;
+import org.mapstruct.*;
+
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
@@ -16,4 +19,10 @@ public interface UserMapper {
 
     UserDetailResponse toUserDetailsResponse(User user);
 
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void fromUserUpdateRequest(UserUpdateRequest userUpdateRequest, @MappingTarget User user);
+
+    UserResponse toUserResponse(User user);
+
+    List<UserResponse> tofindList(List<User> users);
 }

@@ -27,7 +27,7 @@ public class AccountTypeServiceImpl implements AccountTypeService{
     @Override
     public AccountTypeResponse findByAlias(String alias) {
 
-        Account_Type account_type = accountTypeRepository.findByAliasIgnoreCase(alias)
+        Account_Type account_type = accountTypeRepository.findByAlias(alias)
                 .orElseThrow(()-> new ResponseStatusException(
                         HttpStatus.NOT_FOUND,
                         "account type does not exist!"

@@ -1,4 +1,4 @@
-package co.isatd.mobilebankingapi.features.init;
+package co.isatd.mobilebankingapi.init;
 
 import co.isatd.mobilebankingapi.domain.Account_Type;
 import co.isatd.mobilebankingapi.domain.Role;
@@ -53,6 +53,12 @@ public class DataInit {
             saving.setAlias("saving");
             saving.setIsDeleted(false);
             saving.setDescription("this is saving account type");
+
+            Account_Type cardActType = new Account_Type();
+            cardActType.setName("cardActType");
+            cardActType.setAlias("cardActType");
+            cardActType.setIsDeleted(false);
+            cardActType.setDescription("this is cardActType account type");
 
             accountTypeRepository.saveAll(List.of(payroll,saving));
         }
