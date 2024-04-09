@@ -6,7 +6,7 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 
 public record UserCreateRequest(
-        @NotNull
+        @NotNull(message = "Pin is required")
         @Positive
         @Max(9999)
         Integer pin,

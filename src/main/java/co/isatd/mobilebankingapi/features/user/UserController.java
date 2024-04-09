@@ -1,6 +1,9 @@
 package co.isatd.mobilebankingapi.features.user;
 
+import co.isatd.mobilebankingapi.base.BaseErrorResponse;
+import co.isatd.mobilebankingapi.base.BaseResponse;
 import co.isatd.mobilebankingapi.base.BasedMessage;
+import co.isatd.mobilebankingapi.features.user.dto.UpdateProfileImageRequest;
 import co.isatd.mobilebankingapi.features.user.dto.UserCreateRequest;
 import co.isatd.mobilebankingapi.features.user.dto.UserResponse;
 import co.isatd.mobilebankingapi.features.user.dto.UserUpdateRequest;
@@ -59,6 +62,14 @@ public class UserController {
         return userService.findList(page,limit);
     }
 
+    @PutMapping("/{uuid}/profile-image")
+    BaseResponse<?> updateProfileImage(@PathVariable String uuid , @Valid @RequestBody UpdateProfileImageRequest updateProfileImageRequest){
+        String newProfileImageUri = userService.updateProfileImage(uuid , String.valueOf(updateProfileImageRequest));
+        return BaseResponse.builder()
+                .payload(newProfileImageUri)
+                .build();
+
+    }
 }
 
 

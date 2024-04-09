@@ -28,6 +28,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final RoleRepository roleRepository;
+    private String mediaBaseUri ;
 
     @Override
     public void createNew(UserCreateRequest userCreateRequest) {
@@ -160,6 +161,17 @@ public class UserServiceImpl implements UserService {
         PageRequest pageRequest = PageRequest.of(page,limit);
         Page<User> users = userRepository.findAll(pageRequest);
         return users.map(userMapper::toUserResponse);
+    }
+
+    @Override
+    public String updateProfileImage(String uuid ,String mediaName) {
+        User user = userRepository.findByUuid(uuid)
+                .orElseThrow(()->
+                        new ResponseStatusException(HttpStatus.NOT_FOUND,
+                                "User has not been found!"));
+        user.setProfileImage(mediaName);
+        userRepository.save(user);
+        return mediaBaseUri + "MEDIA/" + mediaName;
     }
 
 
