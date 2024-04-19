@@ -19,13 +19,5 @@ public class TransactionController {
       return transactionService.transfer(transactionCreateRequest);
     }
 
-    @GetMapping
-    public Page<TransactionResponse> findAll(@RequestParam(required = false, defaultValue = "0") int page,
-                                             @RequestParam(required = false, defaultValue = "25") int page_size,
-                                             @RequestParam(required = false, defaultValue = "") String transaction_type,
-                                             @RequestParam(required = false, defaultValue = "DESC") String sort_date){
 
-        return transactionService.findAll(page,page_size,transaction_type,sort_date);
-
-    }
 }

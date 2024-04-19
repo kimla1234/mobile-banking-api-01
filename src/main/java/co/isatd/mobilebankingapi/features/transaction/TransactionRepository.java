@@ -9,5 +9,4 @@ import java.awt.print.Pageable;
 
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction ,Long> {
-    Page<Transaction> findAllByTransactionType(String transaction, Pageable pageable);
 }

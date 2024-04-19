@@ -70,44 +70,7 @@ public class TransactionServiceImpl implements TransactionService{
     }
 
 
-    @Override
-    public Page<TransactionResponse> findAll(int page, int size, String transactionType, String sortDirection) {
-        if(page < 0 ){
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST,
-                    "page number must be greater than 0"
-            );
-        }
 
-        if(size < 1){
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST,
-                    "Size must be greater than or equal to 1!"
-            );
-        }
-
-        Sort.Direction direction = Sort.Direction.DESC;
-
-        if(sortDirection.equals("ASC")){
-            direction = Sort.Direction.ASC;
-        }
-
-        Sort sortByDateTime = Sort.by(direction, "transactionAt");
-
-        PageRequest pageRequest = PageRequest.of(page,size, sortByDateTime);
-
-        Page<Transaction> transactions;
-
-        if(transactionType.equals("TRANSFER")){
-            transactions = transactionRepository.findAllByTransactionType(transactionType, pageRequest);
-        } else if (transactionType.equals("PAYMENT")) {
-            transactions = transactionRepository.findAllByTransactionType(transactionType, pageRequest);
-        }else {
-            transactions = transactionRepository.findAll(pageRequest);
-        }
-
-        return transactions.map(transactionMapper::toTransactionResponse);
-    }
 
 
 }

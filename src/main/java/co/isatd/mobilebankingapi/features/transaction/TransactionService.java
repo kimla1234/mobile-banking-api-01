@@ -9,5 +9,4 @@ public interface TransactionService {
     TransactionResponse transfer(TransactionCreateRequest transactionCreateRequest);
 
 
-    Page<TransactionResponse> findAll(int page, int size, String transactionType, String sortDirection);
 }
